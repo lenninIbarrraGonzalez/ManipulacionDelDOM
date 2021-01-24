@@ -3,6 +3,11 @@ const baseUrl = 'https://platzi-avo.vercel.app'
 //conectarnos al serever
 
 const appNode = document.querySelector('div#app')
+appNode.addEventListener('click', (event) => {
+  if (event.target.nodeName === 'H2')
+    alert('Utilizando propagación de eventos')
+})
+
 const formatPrice = (price) => {
   const newPrice = new window.Intl.NumberFormat('en-EN', {
     style: 'currency',
@@ -34,6 +39,11 @@ window.fetch(`${baseUrl}/api/avo`).then((respuesta) => respuesta.json())
       //title.style.fontSize = '3rem'
       //title.className = 'muy-grande'
       title.className = 'text-1xl text-red-600 mt-5'
+
+      // title.addEventListener('click', () => {
+      //   window.alert('hola')
+      // })
+      //funciona pero no es optimo mejor aplicar la propagación de eventos
       const price = document.createElement('div')
       //document.body.appendChild(price)
       price.textContent = formatPrice(item.price)
